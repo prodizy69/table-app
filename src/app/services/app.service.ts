@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+
 @Injectable()
 export class ApplicationService {
 
@@ -13,6 +16,6 @@ export class ApplicationService {
     }
 
     updateRowStatus(id, status) {
-        return this.httpClient.post('./config/sample_data.json', { id: id, status: status });
+        return Observable.of({ status: true });
     }
 }

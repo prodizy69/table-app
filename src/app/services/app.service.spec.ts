@@ -15,6 +15,7 @@ describe('ApplicationService', () => {
         service = TestBed.get(ApplicationService);
         httpMock = TestBed.get(HttpTestingController);
     });
+
     it('should be able to retrieve data from the API via GET', () => {
         const data = [
             {
