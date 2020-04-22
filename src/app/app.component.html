@@ -1,0 +1,55 @@
+<div class="list-grid-container">
+  <div class="clearfix"></div>
+  <div class="block lists-grid" *ngIf="listsData.length">
+    <div class="clearfix">
+      <a class="" (click)="updateToggle($event)">test</a>
+    </div>
+
+    <div *ngIf="isOpen" class="icon-settings" (clickOutside)="updateToggle($event)">
+      <div>
+        <a (click)="updateToggle($event)"></a>
+        <h6>Select Columns</h6>
+        <div class="scroll">
+          <div *ngFor="let col of columns; let ind= index;" (click)="updateColumnsList(col)">
+            <div>
+              <input type="checkbox" [(ngModel)]="col.enabled" id="{{col.displayName}} {{ind}}">
+              <label for="defaultCheckbox">
+                {{col.label}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <table class="primary-table table-one">
+      <thead>
+        <tr>
+          <ng-template ngFor let-col [ngForOf]="columns">
+            <th *ngIf="col.enabled" class="pointer-hand">
+              <span>{{col.label}}</span>
+            </th>
+          </ng-template>
+          <th class="pointer-hand">Submit Row Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template ngFor let-row [ngForOf]="currentPageItems">
+          <tr>
+            <ng-template ngFor let-col [ngForOf]="columns">
+              <td *ngIf="col.enabled">
+                {{row[col.value]}}
+              </td>
+            </ng-template>
+            <td class="clickable">
+              <button type="submit" (click)="submitRowStatus(row.id, row.status)">Submit</button>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+    <div class="grid-list-footer" *ngIf="listsData.length">
+      <app-pagination class="pull-right" [(ngModel)]="page" name="page" [config]="pageConfig" [data]="listsData" (currentPageData)="currentPageItems = $event">
+      </app-pagination>
+    </div>
+  </div>
+</div>
