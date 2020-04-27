@@ -2,9 +2,8 @@
   <div class="clearfix"></div>
   <div class="block lists-grid" *ngIf="listsData.length">
     <div class="clearfix">
-      <a class="" (click)="updateToggle($event)">test</a>
-    </div>
-
+      <a class="toggle-btn" (click)="updateToggle($event)"><img src="https://img.icons8.com/cute-clipart/64/000000/gear.png" /> </a>
+  </div>
     <div *ngIf="isOpen" class="icon-settings">
       <div>
         <a (click)="updateToggle($event)"></a>
